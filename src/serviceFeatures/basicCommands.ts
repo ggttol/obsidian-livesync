@@ -58,11 +58,17 @@ export function useBasicCommandsFeature(host: BasicCommandsHost): void {
             id: "livesync-replicate",
             name: $msg("Sync now"),
             callback: async () => {
-                await services.replication.replicateUserInitiated({
+                const outcome = await services.replication.replicateUserInitiated({
                     trigger: "manual",
                     progressPresentation: REPLICATION_PROGRESS_PRESENTATIONS.QUIET,
                     interaction: USER_INITIATED_REPLICATION_AUTHORITY,
                 });
+                if (outcome.status === "failed") {
+                    const msg = outcome.error instanceof Error ? outcome.error.message : typeof outcome.error === "string" ? outcome.error : "未知错误";
+                    log(`同步失败: ${msg}`, LOG_LEVEL_NOTICE);
+                } else if (outcome.status === "blocked") {
+                    log("同步受阻: 存在配置或前置冲突，请检查设置或稍后重试", LOG_LEVEL_NOTICE);
+                }
             },
         });
 

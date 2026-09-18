@@ -24,7 +24,7 @@ export function paneMaintenance(
         paneEl,
         "div",
         {
-            text: "The remote database is locked for synchronization to prevent vault corruption because this device isn't marked as 'resolved'. Please backup your vault, reset the local database, and select 'Mark this device as resolved'. This warning will persist until the device is confirmed as resolved by replication.",
+            text: "为了防止数据损坏，远端数据库已被锁定同步，因为此设备尚未标记为“已解决”。请备份您的仓库，重置本地数据库，然后选择“标记此设备为已解决”。此警告将持续显示，直到通过复制确认设备已解决。",
             cls: "op-warn",
         },
         (c) => {
@@ -32,7 +32,7 @@ export function paneMaintenance(
                 c,
                 "button",
                 {
-                    text: "I've made a backup, mark this device 'resolved'",
+                    text: "我已完成备份，标记此设备为已解决",
                     cls: "mod-warning",
                 },
                 (e) => {
@@ -51,7 +51,7 @@ export function paneMaintenance(
         paneEl,
         "div",
         {
-            text: "To prevent unwanted vault corruption, the remote database has been locked for synchronization. (This device is marked 'resolved') When all your devices are marked 'resolved', unlock the database. This warning kept showing until confirming the device is resolved by the replication",
+            text: "为了防止非预期的仓库损坏，远端数据库已被锁定同步。（此设备已标记为“已解决”）当您的所有设备都标记为已解决后，请解锁数据库。此警告将持续显示，直到通过复制确认设备已解决。",
             cls: "op-warn",
         },
         (c) =>
@@ -59,7 +59,7 @@ export function paneMaintenance(
                 c,
                 "button",
                 {
-                    text: "I'm ready, unlock the database",
+                    text: "我已准备好，解锁远程数据库",
                     cls: "mod-warning",
                 },
                 (e) => {
@@ -74,13 +74,13 @@ export function paneMaintenance(
         visibleOnly(isRemoteLocked)
     );
 
-    void addPanel(paneEl, "Scram!").then((paneEl) => {
+    void addPanel(paneEl, "紧急停机保护 (Scram)").then((paneEl) => {
         new Setting(paneEl)
-            .setName("Lock Server")
-            .setDesc("Lock the remote server to prevent synchronization with other devices.")
+            .setName("锁定远程服务器")
+            .setDesc("锁定远程服务器以阻止与其他设备同步，防止数据异常扩散。")
             .addButton((button) =>
                 setButtonDestructiveState(button)
-                    .setButtonText("Lock")
+                    .setButtonText("立即锁定")
                     .setDisabled(false)
                     .onClick(async () => {
                         await this.services.replication.markLocked();
@@ -89,11 +89,11 @@ export function paneMaintenance(
             .addOnUpdate(this.onlyOnCouchDBOrMinIO);
 
         new Setting(paneEl)
-            .setName("Emergency restart")
-            .setDesc("Disables all synchronization and restart.")
+            .setName("紧急安全重启")
+            .setDesc("禁用所有同步进程并安全重启插件。")
             .addButton((button) =>
                 setButtonDestructiveState(button)
-                    .setButtonText("Flag and restart")
+                    .setButtonText("标记并重启")
                     .setDisabled(false)
                     .onClick(async () => {
                         await this.core.storageAccess.writeFileAuto(FlagFilesOriginal.SUSPEND_ALL, "");
@@ -102,13 +102,13 @@ export function paneMaintenance(
             );
     });
 
-    void addPanel(paneEl, "Reset Synchronisation information").then((paneEl) => {
+    void addPanel(paneEl, "重置同步数据与缓存").then((paneEl) => {
         new Setting(paneEl)
-            .setName("Reset Synchronisation on This Device")
-            .setDesc("Restore or reconstruct local database from remote.")
+            .setName("重置此设备的同步缓存")
+            .setDesc("清空本机缓存数据库，并从远程服务器完整重新拉取数据（安全，推荐用于多端不同步时修复本机）。")
             .addButton((button) =>
                 button
-                    .setButtonText("Schedule and Restart")
+                    .setButtonText("安排并重启")
                     .setCta()
                     .setDisabled(false)
                     .onClick(async () => {
@@ -117,11 +117,11 @@ export function paneMaintenance(
                     })
             );
         new Setting(paneEl)
-            .setName("Overwrite Server Data with This Device's Files")
-            .setDesc("Rebuild local and remote database with local files.")
+            .setName("⚠️ 用此设备的文件覆盖远程服务器数据")
+            .setDesc("【极高危】以此设备本地文件为唯一基准，强行重建并覆盖远程数据库。若此设备缺少笔记，其他设备的对应笔记将被抹除！")
             .addButton((button) =>
                 button
-                    .setButtonText("Schedule and Restart")
+                    .setButtonText("安排并重启")
                     .setCta()
                     .setDisabled(false)
                     .onClick(async () => {
@@ -131,13 +131,13 @@ export function paneMaintenance(
             );
     });
 
-    void addPanel(paneEl, "Syncing", () => {}, this.onlyOnCouchDBOrMinIO).then((paneEl) => {
+    void addPanel(paneEl, "同步数据调度", () => {}, this.onlyOnCouchDBOrMinIO).then((paneEl) => {
         new Setting(paneEl)
-            .setName("Resend")
-            .setDesc("Resend all chunks to the remote.")
+            .setName("重新推送数据块")
+            .setDesc("将本地全部数据块重新推送至远程数据库。")
             .addButton((button) =>
                 setButtonDestructiveState(button)
-                    .setButtonText("Send chunks")
+                    .setButtonText("发送数据块")
                     .setDisabled(false)
                     .onClick(async () => {
                         if (this.core.replicator instanceof LiveSyncCouchDBReplicator) {
@@ -188,13 +188,13 @@ export function paneMaintenance(
             )
             .addOnUpdate(this.onlyOnMinIO);
     });
-    void addPanel(paneEl, "Garbage Collection V3 (Beta)", (e) => e, this.onlyOnCouchDB).then((paneEl) => {
+    void addPanel(paneEl, "数据库碎片整理与瘦身 V3 (测试版)", (e) => e, this.onlyOnCouchDB).then((paneEl) => {
         new Setting(paneEl)
-            .setName("Perform Garbage Collection")
-            .setDesc("Perform Garbage Collection to remove unused chunks and reduce database size.")
+            .setName("执行碎片整理与瘦身")
+            .setDesc("清理数据库中无用的孤立数据块，减少数据库物理占用。")
             .addButton((button) =>
                 button
-                    .setButtonText("Perform Garbage Collection")
+                    .setButtonText("执行碎片整理")
                     .setDisabled(false)
                     .onClick(() => {
                         this.closeSetting();
@@ -291,13 +291,11 @@ export function paneMaintenance(
 
     void addPanel(paneEl, "Rebuilding Operations (Remote Only)", () => {}, this.onlyOnCouchDBOrMinIO).then((paneEl) => {
         new Setting(paneEl)
-            .setName("Perform cleanup")
-            .setDesc(
-                "Reduces storage space by discarding all non-latest revisions. This requires the same amount of free space on the remote server and the local client."
-            )
+            .setName("压缩与清理冗余版本")
+            .setDesc("通过丢弃非最新版本历史来减少服务器存储空间。请确保服务器与本机有足够的剩余空间。")
             .addButton((button) =>
                 button
-                    .setButtonText("Perform")
+                    .setButtonText("立即执行")
                     .setDisabled(false)
                     .onClick(async () => {
                         const replicator = this.core.replicator as LiveSyncCouchDBReplicator;
@@ -312,11 +310,11 @@ export function paneMaintenance(
             .addOnUpdate(this.onlyOnCouchDB);
 
         new Setting(paneEl)
-            .setName("Overwrite remote")
-            .setDesc("Overwrite remote with local DB and passphrase.")
+            .setName("强制覆盖远程数据库")
+            .setDesc("使用本地数据库及其加密密码完全覆盖远程数据库（高危操作）。")
             .addButton((button) =>
                 setButtonDestructiveState(button)
-                    .setButtonText("Send")
+                    .setButtonText("覆盖发送")
                     .setDisabled(false)
                     .onClick(async () => {
                         await this.rebuildDB("remoteOnly");
@@ -405,10 +403,10 @@ export function paneMaintenance(
             .addOnUpdate(visibleOnly(() => this.isConfiguredAs("isConfigured", true)));
 
         new Setting(paneEl)
-            .setName("Delete local database to reset or uninstall Self-hosted LiveSync")
+            .setName("删除本地数据库（用于彻底重置或卸载插件）")
             .addButton((button) =>
                 setButtonDestructiveState(button)
-                    .setButtonText("Delete")
+                    .setButtonText("确认删除")
                     .setDisabled(false)
                     .onClick(async () => {
                         await this.services.database.resetDatabase();

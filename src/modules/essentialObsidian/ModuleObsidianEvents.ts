@@ -191,11 +191,14 @@ export class ModuleObsidianEvents extends AbstractObsidianModule {
         scheduleTask("watch-online", 500, () => fireAndForget(() => this.watchOnlineAsync()));
     }
     async watchOnlineAsync() {
-        // If some files were failed to retrieve, scan files again.
-        // TODO:FIXME AT V0.17.31, this logic has been disabled.
-        if (compatGlobal.navigator.onLine && this.localDatabase.needScanning) {
-            this.localDatabase.needScanning = false;
-            await this.services.vault.scanVault();
+        if (!this.settings.isConfigured || !this.services.appLifecycle.isReady()) return;
+        if (compatGlobal.navigator.onLine) {
+            if (this.localDatabase.needScanning) {
+                this.localDatabase.needScanning = false;
+                await this.services.vault.scanVault();
+            }
+            // When network reconnects, resume replication scheduling and trigger an unattended sync if appropriate.
+            await this.services.appLifecycle.onResumed();
         }
     }
 
