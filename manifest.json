@@ -1,7 +1,7 @@
 {
     "id": "obsidian-livesync",
     "name": "LiveSync 中文增强版",
-    "version": "1.0.29",
+    "version": "1.0.30-zh",
     "minAppVersion": "1.7.2",
     "description": "面向中文用户的自托管实时同步：自动恢复兼容配置差异，并提供清晰、保守的数据保护操作。",
     "author": "vorotamoroz",
