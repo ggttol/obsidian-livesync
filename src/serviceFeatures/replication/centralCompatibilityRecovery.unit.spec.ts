@@ -56,6 +56,76 @@ describe("central compatibility recovery", () => {
         expect(result).toBe(false);
     });
 
+    it("retries user-initiated synchronisation once after a compatible mismatch is adopted", async () => {
+        const setting = { customChunkSize: 0 };
+        const preferredTweakValue = { customChunkSize: 60 };
+        const openOneShotReplication = vi.fn(async () => true);
+        const failedContext = { provider: {}, replicator: { openOneShotReplication } };
+        const askResolvingMismatched = vi.fn(async () => "CHECKAGAIN");
+        const runFiniteReplicationActivity = vi.fn(async (task: () => unknown) => await task());
+        const runWithActiveReplicatorContext = vi.fn(async (task: (context: unknown) => unknown) =>
+            task(failedContext)
+        );
+        const recovery = createCentralCompatibilityRecovery({
+            services: {
+                setting: { currentSettings: () => setting },
+                replicator: { runFiniteReplicationActivity, runWithActiveReplicatorContext },
+                tweakValue: { askResolvingMismatched },
+            },
+        } as never);
+
+        const result = await recovery.handleReplicationFailure({
+            context: failedContext,
+            setting,
+            outcome: replicationFailed(new Error("mismatched"), {
+                reason: CENTRAL_COMPATIBILITY_REJECTION_REASONS.TWEAK_MISMATCH,
+                preferredTweakValue,
+            }),
+            progressPresentation: REPLICATION_PROGRESS_PRESENTATIONS.QUIET,
+            interaction: USER_INITIATED_REPLICATION_AUTHORITY,
+        } as never);
+
+        expect(result).toBe(true);
+        expect(runFiniteReplicationActivity).toHaveBeenCalledWith(expect.any(Function), {
+            label: "replication-recovery",
+        });
+        expect(openOneShotReplication).toHaveBeenCalledWith(setting, false, false, "sync");
+    });
+
+    it("does not retry a mismatch adoption after the failed publication is replaced", async () => {
+        const setting = { customChunkSize: 0 };
+        const openOneShotReplication = vi.fn(async () => true);
+        const failedContext = { provider: {}, replicator: { openOneShotReplication } };
+        const replacementContext = { provider: {}, replicator: { openOneShotReplication } };
+        const askResolvingMismatched = vi.fn(async () => "CHECKAGAIN");
+        const runWithActiveReplicatorContext = vi.fn(async (task: (context: unknown) => unknown) =>
+            task(replacementContext)
+        );
+        const runFiniteReplicationActivity = vi.fn();
+        const recovery = createCentralCompatibilityRecovery({
+            services: {
+                setting: { currentSettings: () => setting },
+                replicator: { runFiniteReplicationActivity, runWithActiveReplicatorContext },
+                tweakValue: { askResolvingMismatched },
+            },
+        } as never);
+
+        const result = await recovery.handleReplicationFailure({
+            context: failedContext,
+            setting,
+            outcome: replicationFailed(new Error("mismatched"), {
+                reason: CENTRAL_COMPATIBILITY_REJECTION_REASONS.TWEAK_MISMATCH,
+                preferredTweakValue: { customChunkSize: 60 },
+            }),
+            progressPresentation: REPLICATION_PROGRESS_PRESENTATIONS.QUIET,
+            interaction: USER_INITIATED_REPLICATION_AUTHORITY,
+        } as never);
+
+        expect(result).toBe(false);
+        expect(runFiniteReplicationActivity).not.toHaveBeenCalled();
+        expect(openOneShotReplication).not.toHaveBeenCalled();
+    });
+
     it.each(["settings", "publication"])(
         "discards a mismatch after its %s changed before recovery",
         async (changed) => {

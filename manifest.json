@@ -1,9 +1,9 @@
 {
     "id": "obsidian-livesync",
-    "name": "Self-hosted LiveSync",
+    "name": "LiveSync 中文增强版",
     "version": "1.0.29",
     "minAppVersion": "1.7.2",
-    "description": "Community implementation of self-hosted livesync. Reflect your vault changes to some other devices immediately. Please make sure to disable other synchronize solutions to avoid content corruption or duplication.",
+    "description": "面向中文用户的自托管实时同步：自动恢复兼容配置差异，并提供清晰、保守的数据保护操作。",
     "author": "vorotamoroz",
     "authorUrl": "https://github.com/vrtmrz",
     "isDesktopOnly": false

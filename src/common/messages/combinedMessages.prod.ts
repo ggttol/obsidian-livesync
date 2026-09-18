@@ -6384,6 +6384,10 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         zh: "活动远程服务器",
         "zh-tw": "使用中的遠端伺服器",
     },
+    "obsidianLiveSyncSettingTab.titleAdvanced": {
+        def: "Advanced",
+        zh: "高级设置",
+    },
     "obsidianLiveSyncSettingTab.titleAdvancedSettings": {
         def: "Advanced settings",
     },
@@ -6419,6 +6423,10 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ru: "Сервер CouchDB",
         zh: "CouchDB 服务器",
         "zh-tw": "CouchDB 伺服器",
+    },
+    "obsidianLiveSyncSettingTab.titleCustomisationSync": {
+        def: "Customisation sync",
+        zh: "自定义同步",
     },
     "obsidianLiveSyncSettingTab.titleDeletionPropagation": {
         def: "Deletion Propagation",
@@ -6503,6 +6511,10 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         zh: "获取设置",
         "zh-tw": "抓取設定",
     },
+    "obsidianLiveSyncSettingTab.titleHatch": {
+        def: "Hatch",
+        zh: "检查与修复",
+    },
     "obsidianLiveSyncSettingTab.titleHelpAndInformation": {
         def: "Help and information",
     },
@@ -6530,6 +6542,10 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ru: "Логирование",
         zh: "日志",
         "zh-tw": "記錄",
+    },
+    "obsidianLiveSyncSettingTab.titleMaintenance": {
+        def: "Maintenance",
+        zh: "维护",
     },
     "obsidianLiveSyncSettingTab.titleMaintenanceAndRecovery": {
         def: "Maintenance and recovery",
@@ -6566,6 +6582,14 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ru: "Онлайн советы",
         zh: "在线提示",
         "zh-tw": "線上提示",
+    },
+    "obsidianLiveSyncSettingTab.titlePatches": {
+        def: "Patches",
+        zh: "兼容补丁",
+    },
+    "obsidianLiveSyncSettingTab.titlePowerUsers": {
+        def: "Power users",
+        zh: "高级用户",
     },
     "obsidianLiveSyncSettingTab.titleQuickSetup": {
         def: "Quick Setup",
@@ -6621,6 +6645,10 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ru: "Сброс",
         zh: "重置",
         "zh-tw": "重設",
+    },
+    "obsidianLiveSyncSettingTab.titleSelector": {
+        def: "Selector",
+        zh: "同步范围",
     },
     "obsidianLiveSyncSettingTab.titleSetupOtherDevices": {
         def: "Set up other devices",
@@ -7936,7 +7964,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "再確認のためキャンセル",
         ko: "재확인을 위해 취소",
         ru: "Отмена для подтверждения",
-        zh: "Cancel for reconfirmation",
+        zh: "暂时取消，下次同步前再处理",
         "zh-tw": "取消，稍後再確認",
     },
     "Replicator.Dialogue.Locked.Action.Fetch": {
@@ -7947,7 +7975,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "このデバイスの同期をリセット",
         ko: "이 기기의 동기화 재설정",
         ru: "Сбросить синхронизацию на этом устройстве",
-        zh: "Reset Synchronisation on This Device",
+        zh: "重置此设备的同步信息（从远端重新拉取）",
         "zh-tw": "重設此裝置上的同步",
     },
     "Replicator.Dialogue.Locked.Action.Unlock": {
@@ -7958,7 +7986,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "リモートデータベースのロックを解除",
         ko: "원격 데이터베이스 잠금 해제",
         ru: "Разблокировать удалённую базу данных",
-        zh: "Unlock the remote database",
+        zh: "解锁远端数据库",
         "zh-tw": "解鎖遠端資料庫",
     },
     "Replicator.Dialogue.Locked.Message": {
@@ -7969,7 +7997,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "リモートデータベースがロックされています。これはいずれかの端末での再構築が原因です。\nデータベースの破損を避けるため、このデバイスは接続を保留するよう求められています。\n\n3つのオプションがあります：\n\n- このデバイスの同期をリセット\n  最も推奨される信頼性の高い方法です。ローカルデータベースを一度破棄し、リモートデータベースからすべての同期情報を再取得します。ほとんどの場合、これは安全に実行できます。ただし、時間がかかり、安定したネットワークで実行する必要があります。\n- リモートデータベースのロックを解除\n  この方法は、他のレプリケーション(複製)方法ですでに確実に同期されている場合のみ使用できます。単に同じファイルがあるという意味ではありません。確信がない場合は避けてください。\n- 再確認のためキャンセル\n  操作をキャンセルします。次回のリクエスト時に再度確認されます。\n",
         ko: "원격 데이터베이스가 잠겨 있습니다. 이는 일부 터미널에서 데이터베이스를 재구축했기 때문입니다.\n따라서 현재 기기는 데이터베이스 손상을 방지하기 위해 연결을 일시적으로 보류해야 합니다.\n\n선택할 수 있는 세 가지 방법이 있습니다:\n\n- 이 기기의 동기화 재설정\n  가장 권장되고 신뢰할 수 있는 방법입니다. 로컬 데이터베이스를 초기화한 뒤, 원격 데이터베이스의 전체 데이터를 다시 가져옵니다. 대부분의 경우 안전하게 수행할 수 있으나, 시간이 다소 걸리며 안정적인 네트워크 환경에서 진행해야 합니다.\n- 원격 데이터베이스 잠금 해제\n  이 방법은 다른 동기화 방식으로 이미 완전하고 안정적으로 동기화된 경우에만 사용할 수 있습니다. 단순히 파일이 같다는 의미가 아니므로, 확신이 없다면 사용을 피하는 것이 좋습니다.\n- 재확인을 위해 취소\n  이번 작업을 취소하고, 다음 요청 시 다시 안내받습니다.\n",
         ru: "Удалённая база данных заблокирована. Это связано с перестроением на одном из устройств.",
-        zh: "Remote database is locked. This is due to a rebuild on one of the terminals.\nThe device is therefore asked to withhold the connection to avoid database corruption.\n\nThere are three options that we can do:\n\n- Reset Synchronisation on This Device\n  The most preferred and reliable way. This will dispose the local database once, and fetch all from the remote database again, In most case, we can perform this safely. However, it takes some time and should be done in stable network.\n- Unlock the remote database\n  This method can only be used if we are already reliably synchronised by other replication methods. This does not simply mean that we have the same files. If you are not sure, you should avoid it.\n- Cancel for reconfirmation\n    This will cancel the operation. And we will asked again on next request.\n",
+        zh: "远端数据库已锁定。通常是因为另一台设备正在重建数据库。\n为了避免数据损坏，此设备已暂时停止连接。\n\n可选择以下处理方式：\n\n- 重置此设备的同步信息（从远端重新拉取）\n  推荐的安全方式。它会先清空本机的同步数据库，再从远端重新拉取全部数据。请在网络稳定时执行。\n- 解锁远端数据库\n  仅当此设备本身已经通过其他复制方式可靠完成同步时，才能使用此项。文件内容看起来相同并不代表安全；不确定时不要选择此项。\n- 暂时取消，下次同步前再处理\n  取消本次操作，下次同步时会再次询问。",
         "zh-tw":
             "遠端資料庫已鎖定，這是因為其中一台裝置執行過重建。\n因此系統要求此裝置暫停連線，以避免資料庫損毀。\n\n我們有三種做法：\n\n- 重設此裝置上的同步\n  最建議且最可靠的方式。這會先捨棄本機資料庫，再從遠端資料庫重設所有同步資訊。多數情況下都能安全執行，但會花上一些時間，且應在網路穩定時進行。\n- 解鎖遠端資料庫\n  只有在已透過其他複寫方式可靠同步的情況下才能使用此方式。這不只是指雙方擁有相同的檔案。如果你不確定，請避免使用。\n- 取消，稍後再確認\n    這會取消此操作，下次請求時會再次詢問。\n",
     },
@@ -7981,7 +8009,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "全フェッチがスケジュールされました。プラグインは実行のために再起動されます。",
         ko: "모든 것 가져오기가 예약되었습니다. 이를 수행하기 위해 플러그인이 재시작됩니다.",
         ru: "Загрузка всего запланирована. Плагин будет перезапущен.",
-        zh: "Fetch all has been scheduled. Plug-in will be restarted to perform it.",
+        zh: "已安排重新拉取全部数据。插件将重启并执行。",
         "zh-tw": "已排定執行全部抓取。外掛將重新啟動以執行此作業。",
     },
     "Replicator.Dialogue.Locked.Message.Unlocked": {
@@ -7992,7 +8020,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "リモートデータベースのロックが解除されました。操作を再試行してください。",
         ko: "원격 데이터베이스 잠금이 해제되었습니다. 작업을 다시 시도해 주세요.",
         ru: "Удалённая база данных разблокирована. Повторите операцию.",
-        zh: "The remote database has been unlocked. Please retry the operation.",
+        zh: "远端数据库已解锁。本次同步将在解锁后自动重试。",
         "zh-tw": "遠端資料庫已解鎖，請重試該操作。",
     },
     "Replicator.Dialogue.Locked.Title": {
@@ -8003,7 +8031,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "ロック中",
         ko: "잠김",
         ru: "Заблокировано",
-        zh: "Locked",
+        zh: "远端数据库已锁定",
         "zh-tw": "已鎖定",
     },
     "Replicator.Message.Cleaned": {
@@ -8014,7 +8042,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "データベースのクリーナップ中です。レプリケーション(複製)はキャンセルされました。",
         ko: "데이터베이스 정리가 진행 중입니다. 복제가 취소되었습니다",
         ru: "Очистка базы данных в процессе. Репликация отменена",
-        zh: "Database cleaning up is in process. replication has been cancelled",
+        zh: "远端数据库正在清理中，本次同步已取消。",
         "zh-tw": "資料庫正在清理中，複寫已取消",
     },
     "Replicator.Message.InitialiseFatalError": {
@@ -8025,7 +8053,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "レプリケーターが利用できません。これは致命的なエラーです。",
         ko: "사용 가능한 복제기가 없습니다. 치명적인 오류입니다.",
         ru: "Репликатор недоступен, это фатальная ошибка.",
-        zh: "No replicator is available, this is the fatal error.",
+        zh: "没有可用的同步器，同步无法继续。",
         "zh-tw": "沒有可用的複寫器，這是嚴重錯誤。",
     },
     "Replicator.Message.Pending": {
@@ -8036,7 +8064,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "ファイルイベントが保留中です。レプリケーション(複製)はキャンセルされました。",
         ko: "일부 파일 이벤트가 대기 중입니다. 복제가 취소되었습니다.",
         ru: "Некоторые события файлов ожидают. Репликация отменена.",
-        zh: "Some file events are pending. Replication has been cancelled.",
+        zh: "仍有文件变更等待处理，本次同步已取消。",
         "zh-tw": "有部分檔案事件尚待處理，複寫已取消。",
     },
     "Replicator.Message.SomeModuleFailed": {
@@ -8047,7 +8075,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "一部のモジュールの失敗によりレプリケーション(複製)がキャンセルされました。",
         ko: "일부 모듈 실패로 복제가 취소되었습니다",
         ru: "Репликация отменена из-за сбоя модуля",
-        zh: "Replication has been cancelled by some module failure",
+        zh: "某个同步模块执行失败，本次同步已取消。",
         "zh-tw": "複寫因某個模組失敗而取消",
     },
     "Replicator.Message.VersionUpFlash": {
@@ -8058,7 +8086,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "更新が検出されました。設定ダイアログを開いて変更ログを確認してください。レプリケーション(複製)はキャンセルされました。",
         ko: "업데이트가 감지되었습니다. 설정 대화 상자를 열어 변경 로그를 확인해 주세요. 복제가 취소되었습니다.",
         ru: "Обновление обнаружено. Откройте настройки и проверьте историю изменений.",
-        zh: "An update has been detected. Please open the Settings dialogue and check the Change Log. Replication has been cancelled.",
+        zh: "检测到插件更新。请打开设置并查看更新日志，本次同步已取消。",
         "zh-tw": "偵測到更新。請開啟設定對話框並查看變更紀錄，複寫已取消。",
     },
     "Requires restart of Obsidian": {
@@ -10179,7 +10207,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "無視",
         ko: "무시",
         ru: "Отмена",
-        zh: "Dismiss",
+        zh: "暂时不处理，同步将保持暂停",
         "zh-tw": "不處理",
     },
     "TweakMismatchResolve.Action.EnableAutoAcceptCompatible": {
@@ -10196,7 +10224,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "設定済みの設定を使用",
         ko: "구성된 설정 사용",
         ru: "Использовать настроенные параметры",
-        zh: "Use configured settings",
+        zh: "采用远端已保存的配置",
         "zh-tw": "採用已設定的值",
     },
     "TweakMismatchResolve.Action.UseMine": {
@@ -10207,7 +10235,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "リモートデータベースの設定を更新",
         ko: "원격 데이터베이스 설정 업데이트",
         ru: "Обновить настройки удалённой базы данных",
-        zh: "Update remote database settings",
+        zh: "将此设备的配置应用到远端数据库",
         "zh-tw": "更新遠端資料庫設定",
     },
     "TweakMismatchResolve.Action.UseMineAcceptIncompatible": {
@@ -10218,7 +10246,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "リモートデータベースの設定を更新するがそのまま維持",
         ko: "원격 데이터베이스 설정 업데이트하지만 그대로 유지",
         ru: "Обновить настройки, но оставить как есть",
-        zh: "Update remote database settings but keep as is",
+        zh: "将此设备的配置应用到远端，并保留不兼容差异",
         "zh-tw": "更新遠端資料庫設定，但保持現狀",
     },
     "TweakMismatchResolve.Action.UseMineWithRebuild": {
@@ -10229,7 +10257,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "リモートデータベースの設定を更新して再構築",
         ko: "원격 데이터베이스 설정 업데이트하고 다시 재구축",
         ru: "Обновить настройки и перестроить снова",
-        zh: "Update remote database settings and rebuild again",
+        zh: "将此设备的配置应用到远端，并重新构建远端数据",
         "zh-tw": "更新遠端資料庫設定並再次重建",
     },
     "TweakMismatchResolve.Action.UseRemote": {
@@ -10240,7 +10268,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "このデバイスに設定を適用",
         ko: "이 기기에 설정 적용",
         ru: "Применить настройки к этому устройству",
-        zh: "Apply settings to this device",
+        zh: "将远端配置应用到此设备",
         "zh-tw": "將設定套用到此裝置",
     },
     "TweakMismatchResolve.Action.UseRemoteAcceptIncompatible": {
@@ -10251,7 +10279,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "このデバイスに設定を適用し、非互換性を無視",
         ko: "이 기기에 설정 적용하지만 호환성 문제 무시",
         ru: "Применить настройки, но игнорировать несовместимость",
-        zh: "Apply settings to this device, but and ignore incompatibility",
+        zh: "将远端配置应用到此设备，并保留不兼容差异",
         "zh-tw": "將設定套用到此裝置，並忽略不相容之處",
     },
     "TweakMismatchResolve.Action.UseRemoteWithRebuild": {
@@ -10262,7 +10290,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "このデバイスに設定を適用し、再フェッチ",
         ko: "이 기기에 설정 적용하고 다시 가져오기",
         ru: "Применить настройки и загрузить снова",
-        zh: "Apply settings to this device, and fetch again",
+        zh: "将远端配置应用到此设备，并重新拉取远端数据",
         "zh-tw": "將設定套用到此裝置，並再次抓取",
     },
     "TweakMismatchResolve.Message.AutoAcceptCompatibleUndefined": {
@@ -10280,7 +10308,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "\nリモートデータベースの設定は以下の通りです。これらの値は、このデバイスと少なくとも1回同期された他のデバイスによって設定されています。\n\nこれらの設定を使用する場合は、設定済みの設定を使用を選択してください。\nこのデバイスの設定を維持する場合は、無視を選択してください。\n\n${table}\n\n>[!TIP]\n> すべての設定を同期したい場合は、この機能で最小限の設定を適用した後、`Sync settings via markdown`を使用してください。\n\n${additionalMessage}",
         ko: "\n원격 데이터베이스의 설정은 다음과 같습니다. 이 값들은 이 기기와 최소 한 번 동기화된 다른 기기에서 구성된 것입니다.\n\n이 설정을 사용하려면 구성된 설정 사용를 선택해 주세요.\n이 기기의 설정을 유지하려면 무시를 선택해 주세요.\n\n${table}\n\n>[!TIP]\n> 모든 설정을 동기화하려면 이 기능으로 최소 구성을 적용한 후 `마크다운을 통한 설정 동기화`를 사용해 주세요.\n\n${additionalMessage}",
         ru: "Настройки в удалённой базе данных следующие. Эти значения настроены другими устройствами.",
-        zh: "\nThe settings in the remote database are as follows. These values are configured by other devices, which are synchronised with this device at least once.\n\nIf you want to use these settings, please select Use configured settings.\nIf you want to keep the settings of this device, please select Dismiss.\n\n${table}\n\n>[!TIP]\n> If you want to synchronise all settings, please use `Sync settings via markdown` after applying minimal configuration with this feature.\n\n${additionalMessage}",
+        zh: "\n远端数据库中的同步配置如下。这些值由至少同步过此设备一次的其他设备写入。\n\n如果要使用这些配置，请选择 采用远端已保存的配置。\n如果要保留此设备当前的配置，请选择 暂时不处理，同步将保持暂停。\n\n${table}\n\n>[!TIP]\n> 如果要同步全部设置，请先用此功能完成必要的基础配置，然后使用“通过 Markdown 同步设置”。\n\n${additionalMessage}",
         "zh-tw":
             "\n遠端資料庫中的設定如下。這些值由其他裝置所設定，而那些裝置至少與此裝置同步過一次。\n\n如果你想使用這些設定，請選擇「採用已設定的值」。\n如果你想保留此裝置的設定，請選擇「不處理」。\n\n${table}\n\n>[!TIP]\n> 如果你想同步所有設定，請先用此功能套用最小設定，再使用 `Sync settings via markdown`。\n\n${additionalMessage}",
     },
@@ -10292,7 +10320,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "設定がリモートサーバーの設定と一致しません。\n\n以下の設定が一致している必要があります：\n\n${table}\n\n判断をお知らせください。\n\n${additionalMessage}",
         ko: "구성이 원격 서버의 것과 일치하지 않습니다.\n\n다음 구성이 일치해야 합니다:\n\n${table}\n\n결정을 알려주세요.\n\n${additionalMessage}",
         ru: "Ваша конфигурация не совпадает с удалённым сервером.",
-        zh: "Your configuration has not been matched with the one on the remote server.\n\nFollowing configuration should be matched:\n\n${table}\n\nLet us know your decision.\n\n${additionalMessage}",
+        zh: "此设备的同步配置与远端服务器不一致。\n\n以下配置需要保持一致：\n\n${table}\n\n请选择如何处理。选择正确处理方式后，本次同步将自动重试。\n\n${additionalMessage}",
         "zh-tw":
             "你的設定與遠端伺服器上的設定不一致。\n\n以下設定需要保持一致：\n\n${table}\n\n請告訴我們你的決定。\n\n${additionalMessage}",
     },
@@ -10316,7 +10344,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "\n>[!NOTICE]\n> 一部の変更は互換性がありますが、追加のストレージと転送量を消費する可能性があります。再構築をお勧めします。ただし、再構築は現時点では実行されない場合がありますが、将来のメンテナンスで実装される可能性があります。\n> ***適用には時間と安定したネットワーク接続が必要です！***",
         ko: "\n>[!NOTICE]\n> 일부 변경사항은 호환 가능하지만 추가 스토리지 및 전송량을 소모할 수 있습니다. 재구축을 권장합니다. 하지만 현재 재구축을 수행하지 않더라도 향후 유지보수에서 구현될 수 있습니다.\n> ***시간적 여유가 있고 안정적인 네트워크에 연결된 상태에서 적용해 주세요!***",
         ru: "Некоторые изменения совместимы, но могут потребовать дополнительного хранилища. Рекомендуется перестроение.",
-        zh: "\n>[!NOTICE]\n> Some changes are compatible but may consume extra storage and transfer volumes. A rebuild is recommended. However, a rebuild may not be performed at present, but may be implemented in future maintenance.\n> ***Please ensure that you have time and are connected to a stable network to apply!***",
+        zh: "\n>[!NOTICE]\n> 这些变更相互兼容，但可能增加存储空间和传输量。建议重建；本次不一定立即重建，可以在后续维护中执行。\n> ***请确认网络稳定并预留足够时间后再执行！***",
         "zh-tw":
             "\n>[!NOTICE]\n> 部分變更雖然相容，但可能耗用額外的儲存空間與傳輸量，建議進行重建。不過目前可能不會執行重建，未來的維護作業可能會實作。\n> ***請確認你有足夠時間且網路連線穩定，再進行套用！***",
     },
@@ -10328,7 +10356,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "\n>[!WARNING]\n> 一部のリモート設定はこのデバイスのローカルデータベースと互換性がありません。ローカルデータベースの再構築が必要です。\n> ***適用には時間と安定したネットワーク接続が必要です！***",
         ko: "\n>[!WARNING]\n> 일부 원격 구성이 이 기기의 로컬 데이터베이스와 호환되지 않습니다. 로컬 데이터베이스 재구축이 필요합니다.\n> ***시간적 여유가 있고 안정적인 네트워크에 연결된 상태에서 적용해 주세요!***",
         ru: "Некоторые удалённые конфигурации несовместимы с локальной базой данных. Требуется перестроение.",
-        zh: "\n>[!WARNING]\n> Some remote configurations are not compatible with the local database of this device. Rebuilding the local database will be required.\n> ***Please ensure that you have time and are connected to a stable network to apply!***",
+        zh: "\n>[!WARNING]\n> 部分远端配置与此设备的本地数据库不兼容，因此需要重新构建本地数据库。\n> ***请确认网络稳定并预留足够时间后再执行！***",
         "zh-tw":
             "\n>[!WARNING]\n> 部分遠端設定與此裝置的本機資料庫不相容，將需要重建本機資料庫。\n> ***請確認你有足夠時間且網路連線穩定，再進行套用！***",
     },
@@ -10340,7 +10368,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "\n>[!NOTICE]\n> ローカルデータベースとリモートデータベースの非互換性を引き起こす値の違いが検出されました。\n> 一部の変更は互換性がありますが、追加のストレージと転送量を消費する可能性があります。再構築をお勧めします。ただし、再構築は現時点では実行されない場合がありますが、将来のメンテナンスで実装される可能性があります。\n> 再構築を行う場合は数分以上かかります。**今実行しても安全か確認してください。**",
         ko: "\n>[!NOTICE]\n> 로컬 데이터베이스와 원격 데이터베이스가 호환되지 않도록 만드는 값들이 다른 것을 감지했습니다.\n> 일부 변경사항은 호환 가능하지만 추가 스토리지 및 전송량을 소모할 수 있습니다. 재구축을 권장합니다. 하지만 현재 재구축을 수행하지 않더라도 향후 유지보수에서 구현될 수 있습니다.\n> 재구축을 원한다면 몇 분 이상 소요됩니다. **지금 수행해도 안전한지 확인해 주세요.**",
         ru: "Обнаружены значения, несовместимые с удалённой базой данных. Рекомендуется перестроение.",
-        zh: "\n>[!NOTICE]\n> We have detected that some of the values are different to make incompatible the local database with the remote database.\n> Some changes are compatible but may consume extra storage and transfer volumes. A rebuild is recommended. However, a rebuild may not be performed at present, but may be implemented in future maintenance.\n> If you want to rebuild, it takes a few minutes or more. **Make sure it is safe to perform it now.**",
+        zh: "\n>[!NOTICE]\n> 检测到部分配置值不一致，导致本地数据库与远端数据库不兼容。\n> 这些变更相互兼容，但可能增加存储空间和传输量。建议重建；本次不一定立即重建，可以在后续维护中执行。\n> 重建可能需要几分钟甚至更久。**请确认现在执行是安全的。**",
         "zh-tw":
             "\n>[!NOTICE]\n> 我們偵測到部分值不同，會使本機資料庫與遠端資料庫不相容。\n> 部分變更雖然相容，但可能耗用額外的儲存空間與傳輸量，建議進行重建。不過目前可能不會執行重建，未來的維護作業可能會實作。\n> 如果你要重建，會花上數分鐘甚至更久。**請確認現在執行是安全的。**",
     },
@@ -10352,7 +10380,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "\n>[!WARNING]\n> ローカルデータベースとリモートデータベースの非互換性を引き起こす値の違いが検出されました。\n> ローカルまたはリモートの再構築が必要です。どちらも数分以上かかります。**今実行しても安全か確認してください。**",
         ko: "\n>[!WARNING]\n> 로컬 데이터베이스와 원격 데이터베이스가 호환되지 않도록 만드는 값들이 다른 것을 감지했습니다.\n> 로컬 또는 원격 재구축이 필요합니다. 둘 다 몇 분 이상 소요됩니다. **지금 수행해도 안전한지 확인해 주세요.**",
         ru: "Обнаружены значения, несовместимые с удалённой базой данных. Требуется перестроение.",
-        zh: "\n>[!WARNING]\n> We have detected that some of the values are different to make incompatible the local database with the remote database.\n> Either local or remote rebuilds are required. Both of them takes a few minutes or more. **Make sure it is safe to perform it now.**",
+        zh: "\n>[!WARNING]\n> 检测到部分配置值不一致，导致本地数据库与远端数据库不兼容。\n> 需要重建本地或远端数据库。两者都可能需要几分钟甚至更久。**请确认现在执行是安全的。**",
         "zh-tw":
             "\n>[!WARNING]\n> 我們偵測到部分值不同，會使本機資料庫與遠端資料庫不相容。\n> 需要重建本機或遠端其中一方，兩者都會花上數分鐘甚至更久。**請確認現在執行是安全的。**",
     },
@@ -10364,7 +10392,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "| 値の名前 | このデバイス | リモート |\n|: --- |: ---- :|: ---- :|\n${rows}\n\n",
         ko: "| 값 이름 | 이 기기 | 원격 |\n|: --- |: ---- :|: ---- :|\n${rows}\n\n",
         ru: "| Имя значения | Это устройство | На удалённом |\n|: --- |: ---- :|: ---- :|",
-        zh: "| Value name | This device | On Remote |\n|: --- |: ---- :|: ---- :|\n${rows}\n\n",
+        zh: "| 配置项 | 此设备 | 远端服务器 |\n|: --- |: ---- :|: ---- :|\n${rows}\n\n",
         "zh-tw": "| 設定項目 | 此裝置 | 遠端 |\n|: --- |: ---- :|: ---- :|\n${rows}\n\n",
     },
     "TweakMismatchResolve.Table.Row": {
@@ -10386,7 +10414,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "設定の不一致が検出されました",
         ko: "구성 불일치 감지",
         ru: "Обнаружено несоответствие конфигурации",
-        zh: "Configuration Mismatch Detected",
+        zh: "检测到同步配置不一致",
         "zh-tw": "偵測到設定不一致",
     },
     "TweakMismatchResolve.Title.AutoAcceptCompatible": {
@@ -10403,7 +10431,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "設定の不一致が検出されました",
         ko: "구성 불일치 감지",
         ru: "Обнаружено несоответствие конфигурации",
-        zh: "Configuration Mismatch Detected",
+        zh: "检测到同步配置不一致",
         "zh-tw": "偵測到設定不一致",
     },
     "TweakMismatchResolve.Title.UseRemoteConfig": {
@@ -10414,7 +10442,7 @@ export const allMessages: Readonly<Record<string, Readonly<Record<string, string
         ja: "リモート設定を使用",
         ko: "원격 구성 사용",
         ru: "Использовать удалённую конфигурацию",
-        zh: "Use Remote Configuration",
+        zh: "采用远端配置",
         "zh-tw": "使用遠端設定",
     },
     "Ui.Common.LocalDatabaseInitialisationFailed": {

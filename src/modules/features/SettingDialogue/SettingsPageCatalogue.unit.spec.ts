@@ -74,6 +74,23 @@ describe("settings page catalogue", () => {
         expect(catalogue.find(({ id }) => id === "help")?.name()).toBe(
             "obsidianLiveSyncSettingTab.titleHelpAndTroubleshooting"
         );
+        expect(catalogue.find(({ id }) => id === "selector")?.name()).toBe(
+            "obsidianLiveSyncSettingTab.titleSelector"
+        );
+        expect(catalogue.find(({ id }) => id === "customisation-sync")?.name()).toBe(
+            "obsidianLiveSyncSettingTab.titleCustomisationSync"
+        );
+        expect(catalogue.find(({ id }) => id === "hatch")?.name()).toBe("obsidianLiveSyncSettingTab.titleHatch");
+        expect(catalogue.find(({ id }) => id === "advanced")?.name()).toBe(
+            "obsidianLiveSyncSettingTab.titleAdvanced"
+        );
+        expect(catalogue.find(({ id }) => id === "power-users")?.name()).toBe(
+            "obsidianLiveSyncSettingTab.titlePowerUsers"
+        );
+        expect(catalogue.find(({ id }) => id === "patches")?.name()).toBe("obsidianLiveSyncSettingTab.titlePatches");
+        expect(catalogue.find(({ id }) => id === "maintenance")?.name()).toBe(
+            "obsidianLiveSyncSettingTab.titleMaintenance"
+        );
     });
 
     it("registers each Advanced control key exactly once", () => {

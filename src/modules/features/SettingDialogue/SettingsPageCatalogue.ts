@@ -153,7 +153,7 @@ export function createSettingsPageCatalogue(): SettingsPageEntry[] {
         },
         {
             id: "selector",
-            name: () => "Selector",
+            name: () => $msg("obsidianLiveSyncSettingTab.titleSelector"),
             icon: "🚦",
             order: 33,
             level: LEVEL_ADVANCED,
@@ -162,7 +162,7 @@ export function createSettingsPageCatalogue(): SettingsPageEntry[] {
         },
         {
             id: "customisation-sync",
-            name: () => "Customisation sync",
+            name: () => $msg("obsidianLiveSyncSettingTab.titleCustomisationSync"),
             icon: "🔌",
             order: 60,
             level: LEVEL_ADVANCED,
@@ -171,7 +171,7 @@ export function createSettingsPageCatalogue(): SettingsPageEntry[] {
         },
         {
             id: "hatch",
-            name: () => "Hatch",
+            name: () => $msg("obsidianLiveSyncSettingTab.titleHatch"),
             icon: "🧰",
             order: 50,
             level: undefined,
@@ -180,7 +180,7 @@ export function createSettingsPageCatalogue(): SettingsPageEntry[] {
         },
         {
             id: "advanced",
-            name: () => "Advanced",
+            name: () => $msg("obsidianLiveSyncSettingTab.titleAdvanced"),
             icon: "🔧",
             order: 46,
             level: LEVEL_ADVANCED,
@@ -189,7 +189,7 @@ export function createSettingsPageCatalogue(): SettingsPageEntry[] {
         },
         {
             id: "power-users",
-            name: () => "Power users",
+            name: () => $msg("obsidianLiveSyncSettingTab.titlePowerUsers"),
             icon: "💪",
             order: 47,
             level: LEVEL_POWER_USER,
@@ -198,7 +198,7 @@ export function createSettingsPageCatalogue(): SettingsPageEntry[] {
         },
         {
             id: "patches",
-            name: () => "Patches",
+            name: () => $msg("obsidianLiveSyncSettingTab.titlePatches"),
             icon: "🩹",
             order: 51,
             level: LEVEL_EDGE_CASE,
@@ -207,7 +207,7 @@ export function createSettingsPageCatalogue(): SettingsPageEntry[] {
         },
         {
             id: "maintenance",
-            name: () => "Maintenance",
+            name: () => $msg("obsidianLiveSyncSettingTab.titleMaintenance"),
             icon: "🎛️",
             order: 70,
             level: undefined,

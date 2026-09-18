@@ -12,6 +12,12 @@ Earlier releases remain available in the 1.0 release history, the 1.0 preview hi
 
 ## Unreleased
 
+### Synchronisation recovery
+
+- User-initiated synchronisation now retries once after compatible device settings are aligned, instead of requiring another manual synchronisation.
+- Simplified Chinese now covers the remote-lock and configuration-mismatch recovery dialogues, with explicit data-risk language.
+- Settings page names now use the translation catalogue instead of hard-coded English labels.
+
 ## 1.0.29
 
 16th September, 2026

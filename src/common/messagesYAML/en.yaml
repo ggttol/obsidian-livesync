@@ -1150,6 +1150,13 @@ obsidianLiveSyncSettingTab:
     titleHiddenFiles: Hidden Files
     titleLogging: Logging
     titleMinioS3R2: Minio,S3,R2
+    titleSelector: Selector
+    titleCustomisationSync: Customisation sync
+    titleHatch: Hatch
+    titleAdvanced: Advanced
+    titlePowerUsers: Power users
+    titlePatches: Patches
+    titleMaintenance: Maintenance
     titleNotification: Notification
     titleOnlineTips: Online Tips
     titleQuickSetup: Quick Setup

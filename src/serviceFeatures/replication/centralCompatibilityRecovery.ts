@@ -43,9 +43,24 @@ function canSetPreferredRemoteTweakSettings(replicator: ReplicatorInstance): rep
     );
 }
 
+interface OneShotRetryableReplicator extends ReplicatorInstance {
+    openOneShotReplication(
+        setting: ObsidianLiveSyncSettings,
+        showResult: boolean,
+        retrying: boolean,
+        syncMode: "sync" | "pullOnly" | "pushOnly",
+        ignoreCleanLock?: boolean
+    ): Promise<boolean>;
+}
+
 function canMarkRemoteResolved(replicator: ReplicatorInstance): replicator is ResolvedRemoteWriter {
     return "markRemoteResolved" in replicator && typeof replicator.markRemoteResolved === "function";
 }
+
+function canRetryOneShotReplication(replicator: ReplicatorInstance): replicator is OneShotRetryableReplicator {
+    return "openOneShotReplication" in replicator && typeof replicator.openOneShotReplication === "function";
+}
+
 
 /**
  * Compose central compatibility recovery around the exact failed publication.
@@ -155,7 +170,7 @@ Even if you choose to clean up, you will see this option again if you exit Obsid
             }
             const assessment =
                 recovery.tweakAssessment ?? assessTweakCompatibility(setting, recovery.preferredTweakValue);
-            await context.services.tweakValue.askResolvingMismatched(
+            const resolution = await context.services.tweakValue.askResolvingMismatched(
                 recovery.preferredTweakValue,
                 async (effectiveSetting) => {
                     let updated = false;
@@ -169,6 +184,18 @@ Even if you choose to clean up, you will see this option again if you exit Obsid
                 },
                 assessment
             );
+            if (resolution == "CHECKAGAIN") {
+                return await context.services.replicator.runWithActiveReplicatorContext(async (activeContext) => {
+                    if (activeContext !== failedContext) return false;
+                    const replicator = activeContext.replicator;
+                    if (!canRetryOneShotReplication(replicator)) return false;
+                    const currentSetting = context.services.setting.currentSettings();
+                    return await context.services.replicator.runFiniteReplicationActivity(
+                        () => replicator.openOneShotReplication(currentSetting, showProgress, false, "sync"),
+                        { label: "replication-recovery" }
+                    );
+                }) ?? false;
+            }
             return false;
         }
 
